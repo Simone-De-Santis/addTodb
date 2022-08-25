@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>test aggiunta dati al db al premere del pulsante</h1>
+    <div>
+        <button type="button" onclick="CallAdd()">Click Me!</button>
+    </div>
+
+
+
+
+    <script>
+        function CallAdd() {
+            const ob = {
+                "nome": "simone",
+                "cognome": "De Santis",
+                "via": "muzio scevola",
+                "telefono": "3477464862",
+            }
+            const url = {
+                "baseUrl": "http://localhost",
+                "path": "/Test/addTodb/bck/",
+                "endPoint": "insertdata.php"
+            }
+            let urlComp = url.baseUrl + url.path + url.endPoint;
+            console.log(ob);
+            $.ajax({
+                url: urlComp,
+                type: "POST",
+                data: {
+                    method: "readCall",
+                    "ob": ob,
+                },
+                success: function (response) {
+                    console.log("si", response);
+                },
+                error: function (request, error) {
+                    console.log("no");
+                }
+            });
+            console.log("a", ob.nome)
+        }
+
+    </script>
+
+</body>
+
+</html>
